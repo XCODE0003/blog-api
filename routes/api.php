@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('/categories/popular', [ArticleController::class, 'popular']);
+Route::get('/article/{id}', [ArticleController::class, 'show']);
+Route::get('/articles/paginate', [ArticleController::class, 'show_paginate']);
+Route::post('/comment/add', [CommentController::class, 'add']);
